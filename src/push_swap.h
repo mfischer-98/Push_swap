@@ -18,5 +18,16 @@
 # include <stdlib.h>
 # include <stdio.h>
 
+struct stack
+{
+	int				number;
+	int				index;
+	struct stack	*next;
+};
+
+//Parsing
+int	parsing(int ac, char **av);
+int	check_arg(char **av);
+int	check_numbers(int n, char **av);
 
 #endif

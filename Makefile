@@ -22,7 +22,7 @@ INC_PATH		= src
 LIBS_PATH		= lib
 BUILD_PATH		= .build
 
-FILES			= main.c
+FILES			= main.c parsing.c
 
 LIBFT_URL 		= https://github.com/mfischer-98/Libft_extra.git
 LIBFT_PATH		= $(LIBS_PATH)/libft
@@ -40,14 +40,14 @@ MKDIR_P			= mkdir -p
 #                                  RULES                                       #
 #==============================================================================#
 
-all: deps $(BUILD_PATH) $(NAME)	## Compile
+all: deps $(BUILD_PATH) $(NAME)	#Compile
 
 $(NAME): $(BUILD_PATH) $(LIBFT_ARC) $(OBJS)	## Compile
 	@$(CC) $(CFLAGS) $(OBJS) $(INC) $(LIBFT_ARC) -o $(NAME)
 	@echo " $(MAG)🌸 Compiling $(MAG)$(NAME)$(D)"
 
 
-deps:		## Download/Update deps
+deps:		#Download/Update deps
 	@if test -d "$(LIBFT_PATH)"; then \
 		echo "    $(B)$(D)$(GRN)[Nothing to be done 𖡼.𖤣𖥧𖡼.𖤣𖥧$(D)]"; fi
 	@if test ! -d "$(LIBFT_PATH)"; then make get_libft; \
@@ -70,36 +70,17 @@ get_libft:
 	@git clone -q $(LIBFT_URL) $(LIBFT_PATH);
 	@echo " $(B)$(MAG)🌸 Libft submodule download$(D)..."
 
-# tester:		## Run the tester script
-# 	@echo "   $(B)Running Push Swap Tester$(D)"
-# 	@curl https://raw.githubusercontent.com/hu8813/tester_push_swap/main/pstester.py | python3 -
-
-# visualizer:
-# 	@echo "   $(B)Setting up Push Swap Visualizer$(D)"
-# 	@if [ ! -d "push_swap_visualizer" ]; then \
-# 		echo "   $(B)$(YEL)Cloning visualizer repository$(D) 💾💾"; \
-# 		git clone https://github.com/o-reo/push_swap_visualizer.git; \
-# 	else \
-# 		echo "   $(B)$Visualizer repository already exists$(D)"; \
-# 	fi
-# 	@echo "   $(B)$Building visualizer 🔨$(D)"
-# 	@mkdir -p push_swap_visualizer/build 
-# 	@cd push_swap_visualizer/build && cmake .. -DCMAKE_POLICY_VERSION_MINIMUM=3.5 && make
-# 	@echo "   $(B)$(GRN)Visualizer build complete$(D)"
-# 	@echo "   $(B)Running visualizer$(D)"
-# 	@cd push_swap_visualizer/build && ./bin/visualizer
-
-clean:				## Remove object files
+clean:				#Remove object files
 	@echo "$(MAG)𖡼.𖤣𖥧𖡼.𖤣𖥧 $(B)Cleaning object files$(D)"
 	@$(RM) $(BUILD_PATH); 
 	@echo "          $(B)Removing $(BUILD_PATH) folder & files"; \
 
-fclean: clean			## Remove executable and .gdbinit
+fclean: clean			#Remove executable and .gdbinit
 	@echo "$(MAG)𖡼.𖤣𖥧𖡼.𖤣𖥧 $(B)Cleaning executables$(D)"
 	@$(RM) $(NAME);
 	@echo "          $(B)Removing $(NAME) file"; \
 
-libclean: fclean	## Remove libs
+libclean: fclean	#Remove libs
 	@echo "$(MAG)𖡼.𖤣𖥧𖡼.𖤣𖥧 $(B)Cleaning libs$(D)"
 	@$(RM) $(LIBS_PATH)
 	@$(RM) push_swap_visualizer
