@@ -14,12 +14,15 @@
 
 int	main(int ac, char **av)
 {
+	//int args_nbr = ...
+	//numeros < 5 different sorts
+	// >= 5: 
 	if (parsing(ac, av))
 	{
-		ft_printf("Invalid args!\n");
-		exit(1);
+		return (1);
 	}
-	ft_printf("Valid args!\n");
+	else
+		ft_printf("Valid args!\n");
 	return (0);
 }
 

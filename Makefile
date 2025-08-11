@@ -49,9 +49,9 @@ $(NAME): $(BUILD_PATH) $(LIBFT_ARC) $(OBJS)	## Compile
 
 deps:		#Download/Update deps
 	@if test -d "$(LIBFT_PATH)"; then \
-		echo "    $(B)$(D)$(GRN)[Nothing to be done 𖡼.𖤣𖥧𖡼.𖤣𖥧$(D)]"; fi
+		echo "    $(B)$(D)$(CYN)[Nothing to be done 𖡼.𖤣𖥧𖡼.𖤣𖥧$(D)]"; fi
 	@if test ! -d "$(LIBFT_PATH)"; then make get_libft; \
-		else echo "    $(B)$(GRN)[libft]$(D) folder found 𖡼.𖤣𖥧𖡼.𖤣𖥧"; fi
+		else echo "    $(CYN)[libft] folder found 𖡼.𖤣𖥧𖡼.𖤣𖥧"; fi
 
 $(BUILD_PATH)/%.o: $(SRC_PATH)/%.c $(HEADERS)
 	@mkdir -p $(dir $@)
@@ -71,17 +71,17 @@ get_libft:
 	@echo " $(B)$(MAG)🌸 Libft submodule download$(D)..."
 
 clean:				#Remove object files
-	@echo "$(MAG)𖡼.𖤣𖥧𖡼.𖤣𖥧 $(B)Cleaning object files$(D)"
+	@echo "$(CYN)𖡼.𖤣𖥧𖡼.𖤣𖥧 $(B)Cleaning object files$(D)"
 	@$(RM) $(BUILD_PATH); 
-	@echo "          $(B)Removing $(BUILD_PATH) folder & files"; \
+	@echo "         -Removing $(BUILD_PATH) folder & files"; \
 
 fclean: clean			#Remove executable and .gdbinit
-	@echo "$(MAG)𖡼.𖤣𖥧𖡼.𖤣𖥧 $(B)Cleaning executables$(D)"
+	@echo "$(CYN)𖡼.𖤣𖥧𖡼.𖤣𖥧 $(B)Cleaning executables$(D)"
 	@$(RM) $(NAME);
-	@echo "          $(B)Removing $(NAME) file"; \
+	@echo "         -Removing $(NAME) file"; \
 
 libclean: fclean	#Remove libs
-	@echo "$(MAG)𖡼.𖤣𖥧𖡼.𖤣𖥧 $(B)Cleaning libs$(D)"
+	@echo "$(CYN)𖡼.𖤣𖥧𖡼.𖤣𖥧 $(B)Cleaning libs$(D)"
 	@$(RM) $(LIBS_PATH)
 	@$(RM) push_swap_visualizer
 
@@ -91,5 +91,7 @@ re: libclean all
 
 # Colors
 #
-GRN		= $(shell tput setaf 2)
+B		= $(shell tput bold)
+D		= $(shell tput sgr0)
+CYN		= $(shell tput setaf 6)
 MAG		= $(shell tput setaf 5)

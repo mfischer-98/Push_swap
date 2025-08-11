@@ -18,12 +18,12 @@
 # include <stdlib.h>
 # include <stdio.h>
 
-struct stack
+typedef struct s_stack
 {
 	int				number;
 	int				index;
 	struct stack	*next;
-};
+}				t_stack;
 
 //Parsing
 int	parsing(int ac, char **av);
