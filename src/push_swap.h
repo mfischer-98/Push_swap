@@ -16,7 +16,7 @@
 # include "../lib/libft/libft.h"
 # include <unistd.h>
 # include <stdlib.h>
-# include <stdio.h>
+# include <limits.h>
 
 typedef struct s_stack
 {
@@ -26,8 +26,11 @@ typedef struct s_stack
 }				t_stack;
 
 //Parsing
-int	parsing(int ac, char **av);
-int	check_arg(char **av);
-int	check_numbers(int n, char **av);
+int		parsing(int ac, char **av);
+int		check_arg(char **av);
+int		check_numbers(int n, char **av);
+int		check_max(char **array, int size);
+int 	check_duplicate(long *num, int size);
+void	free_array(char **array, int n);
 
 #endif

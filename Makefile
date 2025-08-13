@@ -22,7 +22,7 @@ INC_PATH		= src
 LIBS_PATH		= lib
 BUILD_PATH		= .build
 
-FILES			= main.c parsing.c
+FILES			= main.c parsing.c parsing_utils.c
 
 LIBFT_URL 		= https://github.com/mfischer-98/Libft_extra.git
 LIBFT_PATH		= $(LIBS_PATH)/libft

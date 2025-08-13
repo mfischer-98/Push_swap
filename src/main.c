@@ -14,19 +14,17 @@
 
 int	main(int ac, char **av)
 {
-	//int args_nbr = ...
-	//numeros < 5 different sorts
-	// >= 5: 
-	if (parsing(ac, av))
-	{
-		return (1);
-	}
-	else
-		ft_printf("Valid args!\n");
+	int args_num;
+
+	args_num = parsing(ac, av);
+	if (!args_num)
+		exit(1); //invalid args, posso usar exit?
+	//if (args_num < 5) functions to fix two, 3 and 4
+	//if (args_num >= 5) radix function
 	return (0);
 }
 
-/* 
+/*
 00001100
 00100001
 00001010

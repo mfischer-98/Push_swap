@@ -1,25 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   list_utils.c                                       :+:      :+:    :+:   */
+/*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mefische <mefische@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/11 10:01:09 by mefische          #+#    #+#             */
-/*   Updated: 2025/08/11 15:16:28 by mefische         ###   ########.fr       */
+/*   Created: 2025/08/13 10:52:01 by mefische          #+#    #+#             */
+/*   Updated: 2025/08/13 10:52:01 by mefische         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	list_init(int max)
+void	free_array(char **array, int n)
 {
-	t_stack	**stack_a;
-	int		n;
+	int	i;
 
-	n = 0;
-	while (n < max)
+	i = 0;
+	if (array)
 	{
-		create_node(stack_a);
+		while (i < n)
+		{
+			free(array[i]);
+			i++;
+		}
+		free(array);
 	}
 }
+
