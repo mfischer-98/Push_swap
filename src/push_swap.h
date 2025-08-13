@@ -26,11 +26,12 @@ typedef struct s_stack
 }				t_stack;
 
 //Parsing
-int		parsing(int ac, char **av);
-int		check_arg(char **av);
-int		check_numbers(int n, char **av);
-int		check_max(char **array, int size);
-int 	check_duplicate(long *num, int size);
+int		parsing(int ac, char **av, long **numbers);
+int		check_arg(char **av, long **numbers);
+int		check_numbers(int n, char **av, long **numbers);
+int		check_max(char **array, int size, long **numbers);
+int 	check_duplicate(long *numbers, int size);
 void	free_array(char **array, int n);
+int		check_order(long *num, int n);
 
 #endif

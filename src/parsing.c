@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-int check_duplicate(long *num, int size)
+int check_duplicate(long *numbers, int size)
 {
 	int	i;
 	int	j;
@@ -23,7 +23,7 @@ int check_duplicate(long *num, int size)
 		j = i + 1;
 		while (j < size)
 		{
-			if (num[i] == num[j])
+			if (numbers[i] == numbers[j])
 				return (1);
 			j++;
 		}
@@ -32,26 +32,25 @@ int check_duplicate(long *num, int size)
 	return (0);
 }
 
-int check_max(char **array, int size)
+int check_max(char **array, int size, long **numbers)
 {
-	long *num;
 	int	i;
 
 	i = 0;
-	num = malloc (sizeof(long) * size);
+	*numbers = malloc (sizeof(long) * size);
 	while (i < size)
 	{
-		num[i] = atol(array[i]);
-		if (num[i] > INT_MAX || num[i] < INT_MIN)
-			return (ft_printf("Error\nInt overflow."), 0);
+		(*numbers)[i] = atol(array[i]);
+		if ((*numbers)[i] > INT_MAX || (*numbers)[i] < INT_MIN)
+			return (ft_printf("Error\nInt overflow.\n"),  free(*numbers), 0);
 		i++;
 	}
-	if (check_duplicate(num, size))
-		return (ft_printf("Error\nRepeated numbers."), free(num), 0);
-	return (free(num), size);
+	if (check_duplicate(*numbers, size))
+		return (ft_printf("Error\nRepeated numbers."), free(*numbers), 0);
+	return (size);
 }
 
-int	check_numbers(int n, char **av)
+int	check_numbers(int n, char **av, long **numbers)
 {
 	int	i;
 	int	j;
@@ -70,10 +69,10 @@ int	check_numbers(int n, char **av)
 		}
 		i++;
 	}
-	return (check_max(av + 1, n - 1)); //need to start in av[1]
+	return (check_max(av + 1, n - 1, numbers)); //need to start in av[1]
 }
 
-int	check_arg(char **av)
+int	check_arg(char **av, long **numbers)
 {
 	int	i;
 	int	n;
@@ -88,26 +87,27 @@ int	check_arg(char **av)
 		if ((av[1][i] == '-') || (av[1][i] >= '0' && av[1][i] <= '9'))
 		{
 			n++;
+			i++;
 			while ((av[1][i] >= '0' && av[1][i] <= '9') && (av[1][i] != ' '))
 				i++;
 		}
-		else
+		else if ((av[1][i] < '0' || av[1][i] > '9') && (av[1][i] != ' ') && av[1][i])
 			return (0);
 	}
 	array = ft_split(av[1], ' ');
-	if (!check_max(array, n))
+	if (!check_max(array, n, numbers))
 		return (0);
 	free_array(array, n);
 	return (n);
 }
 
-int	parsing(int ac, char **av)
+int	parsing(int ac, char **av, long **numbers)
 {
 	if (ac <= 1)
 		return (0);
 	if (ac == 2)
-		return (check_arg(av));
+		return (check_arg(av, numbers));
 	if (ac > 2)
-		return (check_numbers(ac, av));
+		return (check_numbers(ac, av, numbers));
 	return (0);
 }

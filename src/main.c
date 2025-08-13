@@ -15,10 +15,26 @@
 int	main(int ac, char **av)
 {
 	int args_num;
+	long *numbers;
 
-	args_num = parsing(ac, av);
+	numbers = NULL;
+	args_num = parsing(ac, av, &numbers);
 	if (!args_num)
-		exit(1); //invalid args, posso usar exit?
+	{
+		ft_printf("Invalid args\n");
+		exit(1); //invalid args
+	}
+	if (check_order(numbers, args_num))
+		exit(0); //numbers are in order
+	ft_printf("Size: %d\n", args_num);
+	int i = 0;
+	while (args_num > 0)
+	{
+		printf("Number: %ld\n", numbers[i]);
+		i++;
+		args_num--;
+	}
+
 	//if (args_num < 5) functions to fix two, 3 and 4
 	//if (args_num >= 5) radix function
 	return (0);
