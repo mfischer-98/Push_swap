@@ -22,7 +22,7 @@ typedef struct s_stack
 {
 	int				number;
 	int				index;
-	struct stack	*next;
+	struct s_stack	*next;
 }				t_stack;
 
 //Parsing
@@ -33,5 +33,19 @@ int		check_max(char **array, int size, long **numbers);
 int 	check_duplicate(long *numbers, int size);
 void	free_array(char **array, int n);
 int		check_order(long *num, int n);
+
+//List handling
+void	list_init(t_stack **a, int size, long *numbers);
+t_stack	*create_node(int num);
+void	print_list(t_stack **a);
+
+//Normalization
+void	normalize_numbers(t_stack **a, long *array, int size);
+void	quickSort(long *array, int start, int end);
+int		partition(long *array, int start, int end);
+
+//Sorting < 5
+void	sort_two(t_stack **a);
+void	sort_three(t_stack **a);
 
 #endif

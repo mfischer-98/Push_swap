@@ -12,13 +12,68 @@
 
 #include "push_swap.h"
 
+void	sort_two(t_stack **a)
+{
+	t_stack	*first;
+	t_stack	*second;
+
+	first = *a;
+	second = first->next;
+	if (first->index > second->index)
+	{
+		first->next = second->next; //first aponta para nulo ou prox node
+		second->next = first; //second aponta para o first
+		*a = second; //a aponta para o second, que agora é o primeiro node
+	}
+	ft_printf("sa\n"); //olhar instrucoes
+}
+
+void	sort_three(t_stack **a)
+{
+	t_stack *first;
+	t_stack	*second;
+	t_stack	*third;
+
+	first = *a;
+	second = first->next;
+    third = second->next;
+	if (first->number > second->number)
+	{
+		sort_two(a);
+        ft_printf("sa\n");
+        // Update pointers after swap
+        first = *a;
+        second = first->next;
+        third = second->next;
+	}
+	if (first->number > third->number)
+	{
+		third->next = first;
+		second->next = NULL;
+		*a = third;
+		ft_printf("rra\n");
+	}
+}
+
+void	few_args(t_stack **a, int size)
+{
+	if (size == 2)
+		sort_two(a);
+	if (size == 3)
+		sort_three(a);
+	// if (size == 4)
+	// 	sort_four(&a);
+}
+
 int	main(int ac, char **av)
 {
-	int args_num;
-	long *numbers;
+	int		args_num;
+	//long 	*numbers;
+	t_stack	*a;
 
 	numbers = NULL;
-	args_num = parsing(ac, av, &numbers);
+	a = NULL; //inicializo a stack VAZIA, é só um pro vazio
+	args_num = parsing(ac, av, &a);
 	if (!args_num)
 	{
 		ft_printf("Invalid args\n");
@@ -26,18 +81,15 @@ int	main(int ac, char **av)
 	}
 	if (check_order(numbers, args_num))
 		exit(0); //numbers are in order
-	ft_printf("Size: %d\n", args_num);
-	int i = 0;
-	while (args_num > 0)
-	{
-		printf("Number: %ld\n", numbers[i]);
-		i++;
-		args_num--;
-	}
-
-	//if (args_num < 5) functions to fix two, 3 and 4
-	//if (args_num >= 5) radix function
-	return (0);
+	// list_init(&a, args_num, numbers);
+	// print_list(&a);
+	// normalize_numbers(&a, numbers, args_num);
+	// if (args_num < 5)
+	// 	few_args(&a, args_num);
+	// // if (args_num >= 5)
+	// // 	radix_sort();
+	// print_list(&a);
+	// return (0);
 }
 
 /*
