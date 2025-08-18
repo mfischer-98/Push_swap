@@ -12,33 +12,29 @@
 
 #include "push_swap.h"
 
-void	list_init(t_stack **a, int size, long *numbers)
+void	list_init(t_stack **a, int num)
 {
-	int	i;
 	t_stack *new_node;
 
-	i = 0;
-	while (i < size)
-	{
-		new_node = create_node((int)numbers[i]);
-		if (!new_node)
+	new_node = malloc(sizeof(t_stack));
+	if (!new_node)
 			return ; //dar free dos nodes antigos caso algo errado
-		new_node->next = *a; //novo node aponta para o topo da lista, ele mesmo
-		*a = new_node; //primeiro da stack é o new node
-		i++;
-	}
+	new_node->number = num;
+	new_node->next = *a; // || NULL? novo node aponta para o topo da lista, ele mesmo
+	*a = new_node; //primeiro da stack é o new node
 }
 
-t_stack	*create_node(int num)
+void	free_list(t_stack *a)
 {
-	t_stack	*node;
+	t_stack	*temp;
 
-	node = malloc(sizeof(t_stack));
-	if (!node)
-		return (NULL);
-	node->number = num;
-	node->next = NULL; //isso vai depois ser overwritten depois da primeira iteracao
-	return (node);
+	while (a != NULL)
+	{
+		temp = a;
+		a = a->next;
+		free(temp);
+	}
+	free(a);
 }
 
 void	print_list(t_stack **a)

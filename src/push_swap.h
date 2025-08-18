@@ -26,23 +26,24 @@ typedef struct s_stack
 }				t_stack;
 
 //Parsing
-int		parsing(int ac, char **av, long **numbers);
-int		check_arg(char **av, long **numbers);
-int		check_numbers(int n, char **av, long **numbers);
-int		check_max(char **array, int size, long **numbers);
-int 	check_duplicate(long *numbers, int size);
+int		parsing(int ac, char **av, t_stack **a);
+int		check_arg(char **av, t_stack **a);
+int		check_numbers(int n, char **av, t_stack **a);
+int		check_max(char **array, int size, t_stack **a);
+int 	check_duplicate(int *numbers, int size);
 void	free_array(char **array, int n);
-int		check_order(long *num, int n);
+int		check_order(t_stack **a);
 
 //List handling
-void	list_init(t_stack **a, int size, long *numbers);
-t_stack	*create_node(int num);
+void	list_init(t_stack **a, int num);
 void	print_list(t_stack **a);
+void	free_list(t_stack *a);
 
 //Normalization
-void	normalize_numbers(t_stack **a, long *array, int size);
-void	quickSort(long *array, int start, int end);
-int		partition(long *array, int start, int end);
+void	normalize_numbers(t_stack **a);
+t_stack	*merge_sort(t_stack **lst);
+t_stack	*get_mid(t_stack **lst);
+t_stack	*merge_list(t_stack **lst, t_stack *left, t_stack *right);
 
 //Sorting < 5
 void	sort_two(t_stack **a);

@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-void	sort_two(t_stack **a)
+/* void	sort_two(t_stack **a)
 {
 	t_stack	*first;
 	t_stack	*second;
@@ -63,27 +63,25 @@ void	few_args(t_stack **a, int size)
 		sort_three(a);
 	// if (size == 4)
 	// 	sort_four(&a);
-}
+} */
 
 int	main(int ac, char **av)
 {
 	int		args_num;
-	//long 	*numbers;
 	t_stack	*a;
 
-	numbers = NULL;
 	a = NULL; //inicializo a stack VAZIA, é só um pro vazio
+	if (ac == 1)
+		exit(0);
 	args_num = parsing(ac, av, &a);
 	if (!args_num)
 	{
-		ft_printf("Invalid args\n");
+		
 		exit(1); //invalid args
 	}
-	if (check_order(numbers, args_num))
+	if (check_order(&a))
 		exit(0); //numbers are in order
-	// list_init(&a, args_num, numbers);
-	// print_list(&a);
-	// normalize_numbers(&a, numbers, args_num);
+	normalize_numbers(&a);
 	// if (args_num < 5)
 	// 	few_args(&a, args_num);
 	// // if (args_num >= 5)

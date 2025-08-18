@@ -12,61 +12,74 @@
 
 #include "push_swap.h"
 
-void	normalize_numbers(t_stack **a, long *array, int size)
+void	normalize_numbers(t_stack **a)
 {
-	t_stack *current;
-	int		i;
+	t_stack	*temp;
 
-	quickSort(array, 0, size - 1);
-	current = *a;
-	while (current != NULL)
+	temp = *a;
+	merge_sort(&temp);
+	print_list(&temp);
+}
+
+t_stack	*merge_sort(t_stack **lst)
+{
+	t_stack	*left;
+	t_stack	*right;
+	t_stack	*temp;
+
+	//if ((*lst = NULL) || ((*lst)->next = NULL)) segfault
+	if ((*lst)->next == NULL)
+		return *lst;
+	left = *lst;
+	right = get_mid(lst);
+	temp = right->next;
+	right->next = NULL;
+	right = temp;
+
+	left = merge_sort(&left);
+	right = merge_sort(&right);
+	return (merge_list(lst, left, right));
+}
+
+t_stack	*get_mid(t_stack **lst)
+{
+	t_stack	*temp_slow;
+	t_stack	*temp_fast;
+
+	temp_slow = *lst;
+	temp_fast = (*lst)->next;
+	while (temp_fast && temp_slow) //segfault
 	{
-		i = 0;
-		while (i < size && array[i] != current->number)
-			i++;
-		current->index = i;
-		current = current->next;
+		temp_slow = temp_slow->next;
+		temp_fast = temp_fast->next->next;
 	}
-	print_list(a);
+	return (temp_slow);
 }
 
-
-void	quickSort(long *array, int start, int end)
+t_stack	*merge_list(t_stack **lst, t_stack *left, t_stack *right)
 {
-	int	pivot;
+	t_stack	*temp;
+	t_stack	*tail;
 
-	if (end <= start) //base case para a recursao
-		return ;
-	pivot = partition(array, start, end);
-	quickSort(array, start, pivot - 1); //sort subarray esq
-	quickSort(array, pivot + 1, end); //sort subarray direita
-}
-
-int	partition(long *array, int start, int end)
-{
-	long	pivot;
-	long	temp;
-	int		i;
-	int		j;
-
-	pivot = array[end]; //pivot é o último elemento
-	temp = 0;
-	i = start - 1;
-	j = start;
-	while (j < end)
+	tail = NULL;//not sure
+	temp = *lst;//not sure
+	while(left && right)
 	{
-		if (array[j] < pivot) //se for menor passo pra esquerda, pro i
+		if (left->number < right->number)// se o da esquerda for menor, coloco ele primeiro na tail e passo pro prox na da esquerda
 		{
-			temp = array[i];
-			array[i] = array[j];
-			array[j] = temp;
-			i++;
+			tail->next = left;
+			left = left->next;
 		}
-		j++;
+		else
+		{
+			tail->next = right;
+			right = right->next;
+		}
+		tail = tail->next;
 	}
-	i++; //quero que o pivot seja a proxima posicao de i
-	temp = array[i]; //troco o array de i com o temp 
-	array[i] = array[end];
-	array[end] = temp;
-	return (i);
+	if (left) //se sobrar algum numero em uma das listas, coloco no final
+		tail->next = left;
+	if (right)
+		tail->next = right;
+	return (temp->next);//not sure
 }

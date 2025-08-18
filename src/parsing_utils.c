@@ -12,18 +12,18 @@
 
 #include "push_swap.h"
 
-int	check_order(long *num, int n)
+int	check_order(t_stack **a)
 {
-	int	i;
+	t_stack	*temp;
 
-	i = 0;
-	while(i < n - 1)
+	temp = *a;
+	while(temp->next)
 	{
-		if (num[i] > num[i + 1])
+		if (temp->number < temp->next->number)
 			return (ft_printf("Numbers not sorted :)\n"), 0);
-		i++;
+		temp = temp->next;
 	}
-	return (ft_printf("Numbers sorted :("), 1);
+	return (ft_printf("Numbers sorted :("), free_list(*a), 1);
 }
 
 void	free_array(char **array, int n)

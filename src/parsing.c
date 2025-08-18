@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-int check_duplicate(long *numbers, int size)
+int check_duplicate(int *numbers, int size)
 {
 	int	i;
 	int	j;
@@ -32,25 +32,32 @@ int check_duplicate(long *numbers, int size)
 	return (0);
 }
 
-int check_max(char **array, int size, long **numbers)
+int check_max(char **array, int size, t_stack **a)
 {
-	int	i;
+	int		i;
+	int		*numbers;
+	long	num;
 
 	i = 0;
-	*numbers = malloc (sizeof(long) * size);
+	num = 0;
+	numbers = malloc(sizeof (int) * size);
 	while (i < size)
 	{
-		(*numbers)[i] = atol(array[i]);
-		if ((*numbers)[i] > INT_MAX || (*numbers)[i] < INT_MIN)
-			return (ft_printf("Error\nInt overflow.\n"),  free(*numbers), 0);
+		num = atol(array[i]);
+		if (num > INT_MAX || num < INT_MIN)
+			return (ft_printf("Error\nInt overflow.\n"), free(numbers), free_list(*a), 0);
+		list_init(a, (int)num);
+		numbers[i] = (int)num;
 		i++;
 	}
-	if (check_duplicate(*numbers, size))
-		return (ft_printf("Error\nRepeated numbers."), free(*numbers), 0);
+	//print_list(a);
+	if (check_duplicate(numbers, size))
+		return (ft_printf("Error\nRepeated numbers.\n"), free(numbers), free_list(*a), 0);
+	free(numbers);
 	return (size);
 }
 
-int	check_numbers(int n, char **av, long **numbers)
+int	check_numbers(int n, char **av, t_stack **a)
 {
 	int	i;
 	int	j;
@@ -64,19 +71,19 @@ int	check_numbers(int n, char **av, long **numbers)
 			if ((av[i][j] == '-') && (av[i][j + 1] >= '0' && av[i][j + 1] <= '9'))
 				j++;
 			if (av[i][j] < '0' || av[i][j] > '9')
-				return (0);
+				return (ft_printf("Error\nInvalid characters.\n"), 0);
 			j++;
 		}
 		i++;
 	}
-	return (check_max(av + 1, n - 1, numbers)); //need to start in av[1]
+	return (check_max(av + 1, n - 1, a)); //need to start in av[1]
 }
 
-int	check_arg(char **av, long **numbers)
+int	check_arg(char **av, t_stack **a)
 {
-	int	i;
-	int	n;
-	char **array;
+	int		i;
+	int		n;
+	char	**array;
 
 	i = 0;
 	n = 0;
@@ -92,22 +99,20 @@ int	check_arg(char **av, long **numbers)
 				i++;
 		}
 		else if ((av[1][i] < '0' || av[1][i] > '9') && (av[1][i] != ' ') && av[1][i])
-			return (0);
+			return (ft_printf("Error\nInvalid characters.\n"), 0);
 	}
 	array = ft_split(av[1], ' ');
-	if (!check_max(array, n, numbers))
+	if (!check_max(array, n, a))
 		return (0);
 	free_array(array, n);
 	return (n);
 }
 
-int	parsing(int ac, char **av, long **numbers)
+int	parsing(int ac, char **av, t_stack **a)
 {
-	if (ac <= 1)
-		return (0);
 	if (ac == 2)
-		return (check_arg(av, numbers));
+		return (check_arg(av, a));
 	if (ac > 2)
-		return (check_numbers(ac, av, numbers));
+		return (check_numbers(ac, av, a));
 	return (0);
 }
