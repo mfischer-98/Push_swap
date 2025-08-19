@@ -49,3 +49,26 @@ void	print_list(t_stack **a)
 	}
 	//printf("Node Number: %d  Index: %d\n\n\n", current->number, current->index);
 }
+
+void	index_list(t_stack **a)
+{
+	t_stack	*i;
+	t_stack *j;
+	int		count;
+
+	i = *a; //ou criar nova lista e passar numeros pra la
+	while (i)
+	{
+		j = *a;
+		count = 0;
+		while(j)
+		{
+			if (i->number > j->number)
+				count++;
+			j = j->next;
+		}
+		i->index = count;
+		i = i->next;
+	}
+	print_list(a);
+}

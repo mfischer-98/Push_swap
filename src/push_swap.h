@@ -38,12 +38,7 @@ int		check_order(t_stack **a);
 void	list_init(t_stack **a, int num);
 void	print_list(t_stack **a);
 void	free_list(t_stack *a);
-
-//Normalization
-void	normalize_numbers(t_stack **a);
-t_stack	*merge_sort(t_stack **lst);
-t_stack	*get_mid(t_stack **lst);
-t_stack	*merge_list(t_stack **lst, t_stack *left, t_stack *right);
+void	index_list(t_stack **a);
 
 //Sorting < 5
 void	sort_two(t_stack **a);

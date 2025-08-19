@@ -75,13 +75,10 @@ int	main(int ac, char **av)
 		exit(0);
 	args_num = parsing(ac, av, &a);
 	if (!args_num)
-	{
-		
 		exit(1); //invalid args
-	}
 	if (check_order(&a))
 		exit(0); //numbers are in order
-	normalize_numbers(&a);
+	index_list(&a);
 	// if (args_num < 5)
 	// 	few_args(&a, args_num);
 	// // if (args_num >= 5)
