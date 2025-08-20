@@ -20,10 +20,10 @@ int	check_order(t_stack **a)
 	while(temp->next)
 	{
 		if (temp->number < temp->next->number)
-			return (ft_printf("Numbers not sorted :)\n"), 0);
+			return (0);
 		temp = temp->next;
 	}
-	return (ft_printf("Numbers sorted :("), free_list(*a), 1);
+	return (free_list(*a), 1);
 }
 
 void	free_array(char **array, int n)
@@ -40,4 +40,17 @@ void	free_array(char **array, int n)
 		}
 		free(array);
 	}
+}
+
+void	print_list(t_stack **a)
+{
+	t_stack	*current;
+
+	current = *a;
+	while (current)
+	{
+		printf("Node Number: %d  Index: %d\n", current->number, current->index);
+		current = current->next;
+	}
+	//printf("Node Number: %d  Index: %d\n\n\n", current->number, current->index);
 }

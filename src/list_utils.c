@@ -15,13 +15,23 @@
 void	list_init(t_stack **a, int num)
 {
 	t_stack *new_node;
+	t_stack	*last;
 
 	new_node = malloc(sizeof(t_stack));
 	if (!new_node)
 			return ; //dar free dos nodes antigos caso algo errado
 	new_node->number = num;
-	new_node->next = *a; // || NULL? novo node aponta para o topo da lista, ele mesmo
-	*a = new_node; //primeiro da stack é o new node
+	new_node->next = NULL; // to add ao fim da lista
+	//encontro ultimo node e aponto o novo node pra ele
+	last = *a;
+	if (*a == NULL) //se lista vazia, o node vira head
+	{
+		*a = new_node;
+		return ;
+	}
+	while (last->next != NULL)
+		last = last->next;
+	last->next = new_node;
 }
 
 void	free_list(t_stack *a)
@@ -37,26 +47,13 @@ void	free_list(t_stack *a)
 	free(a);
 }
 
-void	print_list(t_stack **a)
-{
-	t_stack	*current;
-
-	current = *a;
-	while (current)
-	{
-		printf("Node Number: %d  Index: %d\n", current->number, current->index);
-		current = current->next;
-	}
-	//printf("Node Number: %d  Index: %d\n\n\n", current->number, current->index);
-}
-
 void	index_list(t_stack **a)
 {
 	t_stack	*i;
 	t_stack *j;
 	int		count;
 
-	i = *a; //ou criar nova lista e passar numeros pra la
+	i = *a;
 	while (i)
 	{
 		j = *a;
@@ -70,5 +67,23 @@ void	index_list(t_stack **a)
 		i->index = count;
 		i = i->next;
 	}
-	print_list(a);
+}
+
+int	get_min(t_stack **stack)
+{
+	//create temp and compare with min(first number)
+	//if current number < min then I change it to current
+	t_stack	*temp;
+	int		min;
+
+	min = (*stack)->number;
+	temp = (*stack)->next;
+	while (temp)
+	{
+		if (temp->number < min)
+			min = temp->number;
+		temp = temp->next; 
+	}
+	//ft_printf("min: %d\n", min);
+	return (min);
 }
