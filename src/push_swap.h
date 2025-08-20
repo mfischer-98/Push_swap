@@ -41,12 +41,14 @@ void	free_list(t_stack *a);
 void	index_list(t_stack **a);
 int		get_min(t_stack **stack);
 
-//Sorting < 5
+//Sorting
 void	few_args(t_stack **a, t_stack **b, int size);
 void	sort_two(t_stack **a);
 void	sort_three(t_stack **a);
 void	sort_four(t_stack **a, t_stack **b);
 void	sort_five(t_stack **a, t_stack **b);
+void	radix_sort(t_stack **a, t_stack **b, int size);
+int		max_bits(int size);
 
 //Commands
 void	swap(t_stack **stack);

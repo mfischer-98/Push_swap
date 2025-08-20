@@ -20,11 +20,12 @@ void	rotate(t_stack **stack)
 
 	old_start =	*stack; 
 	new_start = old_start->next;
-	new_last = new_start; //primeiro node é agora o segundo da stack anterior
+	*stack = new_start;
+	new_last = *stack; //primeiro node é agora o segundo da stack anterior
 	while (new_last->next != NULL) //corro até o ultimo node, nao até o final
 		new_last = new_last->next;
-	new_last = old_start;  //ultimo node agora é o 1o de antes
-	old_start = NULL;  //next é nulo pq agora é o ultimo
+	new_last->next = old_start;  //ultimo node agora é o 1o de antes
+	old_start->next = NULL;  //next é nulo pq agora é o ultimo
 }
 
 void	ra(t_stack **a)

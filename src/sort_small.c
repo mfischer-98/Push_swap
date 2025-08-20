@@ -23,16 +23,16 @@ void	sort_three(t_stack **a)
 	int	second;
 	int	third;
 
-	first = (*a)->index;
-	second = (*a)->next->index;
-	third = (*a)->next->next->index;
+	first = (*a)->number;
+	second = (*a)->next->number;
+	third = (*a)->next->next->number;
 	if (first > second && first > third)
 		ra(a);
 	else if (second > first && second > third)
 		rra(a);
 	//atualizo first e second
-	first = (*a)->index;
-	second = (*a)->next->index;
+	first = (*a)->number;
+	second = (*a)->next->number;
 	if (first > second)
 		sa(a);
 }

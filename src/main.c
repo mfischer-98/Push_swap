@@ -27,11 +27,10 @@ int	main(int ac, char **av)
 		exit(1); //invalid args
 	if (check_order(&a))
 		exit(0); //numbers are in order
-	index_list(&a);
 	if (args_num <= 5)
 		few_args(&a, &b, args_num);
-	// // if (args_num > 5)
-	// // 	radix_sort();
+	if (args_num > 5)
+		radix_sort(&a, &b, args_num);
 	//print_list(&a);
 	if (a)
 		free_list(a);
