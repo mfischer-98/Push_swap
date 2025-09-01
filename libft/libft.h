@@ -6,7 +6,7 @@
 /*   By: mefische <mefische@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 16:27:18 by mefische          #+#    #+#             */
-/*   Updated: 2025/09/01 12:45:28 by mefische         ###   ########.fr       */
+/*   Updated: 2025/09/01 15:50:09 by mefische         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,12 @@ char	**ft_split(char const *s, char c);
 int		ft_atol(const char *nptr);
 
 //printf
-int	ft_printf(const char *f, ...);
-int	ft_putchar(char c);
-int	ft_putstr(char *s);
-int	ft_putnbr(int n);
-int	ft_unsig_putnbr(unsigned int n);
-int	ft_printhexa(unsigned long n, char *base);
-int	ft_pointer(void *ptr);
+int		ft_printf(const char *f, ...);
+int		ft_putchar(char c);
+int		ft_putstr(char *s);
+int		ft_putnbr(int n);
+int		ft_unsig_putnbr(unsigned int n);
+int		ft_printhexa(unsigned long n, char *base);
+int		ft_pointer(void *ptr);
 
 #endif

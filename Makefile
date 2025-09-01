@@ -10,8 +10,8 @@
 #                                                                              #
 # **************************************************************************** #
 
-MAKE 			= make -s --no-print-directory -C
-NAME 			= push_swap
+MAKE			= make -s --no-print-directory -C
+NAME			= push_swap
 
 SRC				= $(addprefix $(SRC_PATH)/, $(FILES))
 OBJS			= $(SRC:$(SRC_PATH)/%.c=$(BUILD_PATH)/%.o)
@@ -66,7 +66,7 @@ clean:				#Remove object files
 	@make -C libft clean
 	@echo "         -Removing $(BUILD_PATH) folder & files"; \
 
-fclean: clean		#Remove executable and .gdbinit
+fclean: clean		#Remove executables
 	@echo "$(CYN)𖡼.𖤣𖥧𖡼.𖤣𖥧 $(B)Cleaning executables$(D)"
 	@$(RM) $(NAME);
 	@make -C libft fclean
@@ -77,7 +77,6 @@ re: fclean all
 .PHONY: all deps clean fclean libclean re tester get_libft visualizer
 
 # Colors
-#
 B		= $(shell tput bold)
 D		= $(shell tput sgr0)
 CYN		= $(shell tput setaf 6)
