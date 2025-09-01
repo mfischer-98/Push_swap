@@ -18,20 +18,19 @@ int	main(int ac, char **av)
 	t_stack	*a;
 	t_stack	*b;
 
-	a = NULL; //inicializo a stack VAZIA, é só um pro vazio
+	a = NULL;
 	b = NULL;
 	if (ac == 1)
 		exit(0);
 	args_num = parsing(ac, av, &a);
 	if (!args_num)
-		exit(1); //invalid args
+		exit(1);
 	if (check_order(&a))
-		exit(0); //numbers are in order
+		exit(0);
 	if (args_num <= 5)
 		few_args(&a, &b, args_num);
 	if (args_num > 5)
 		radix_sort(&a, &b, args_num);
-	//print_list(&a);
 	if (a)
 		free_list(a);
 	if (b)

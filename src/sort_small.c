@@ -30,7 +30,6 @@ void	sort_three(t_stack **a)
 		ra(a);
 	else if (second > first && second > third)
 		rra(a);
-	//atualizo first e second
 	first = (*a)->number;
 	second = (*a)->next->number;
 	if (first > second)
@@ -42,21 +41,21 @@ void	sort_four(t_stack **a, t_stack **b)
 	int		min;
 
 	min = get_min(a);
-	while ((*a)->number != min) //get min to top
-		rra(a); //rra updates the head pointer and keeps the cycle moving
-	pb(a, b); //push to b
-	sort_three(a); //sort 3 in a
-	pa(a, b); //push a to have it at the top
+	while ((*a)->number != min)
+		rra(a);
+	pb(a, b);
+	sort_three(a);
+	pa(a, b);
 }
 
 void	sort_five(t_stack **a, t_stack **b)
 {
 	int	min;
 
-	min = get_min(a); //same as four
+	min = get_min(a);
 	while ((*a)->number != min)
 		rra(a);
-	pb(a, b); //when i push 0 to b, the min is now 1
+	pb(a, b);
 	sort_four(a, b);
 	pa(a, b);
 }
@@ -68,7 +67,7 @@ void	few_args(t_stack **a, t_stack **b, int size)
 	if (size == 3)
 		sort_three(a);
 	if (size == 4)
-	 	sort_four(a, b);
+		sort_four(a, b);
 	if (size == 5)
-	 	sort_five(a, b);
+		sort_five(a, b);
 }

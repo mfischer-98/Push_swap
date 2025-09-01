@@ -19,14 +19,12 @@ HEADERS			= $(INC_PATH)/push_swap.h
 
 SRC_PATH		= src
 INC_PATH		= src
-LIBS_PATH		= lib
 BUILD_PATH		= .build
 
 FILES			= main.c parsing.c parsing_utils.c list_utils.c sort_small.c radix_sort.c commands/push.c commands/rotate.c commands/rev_rotate.c commands/swap.c
 
-LIBFT_URL 		= https://github.com/mfischer-98/Libft_extra.git
-LIBFT_PATH		= $(LIBS_PATH)/libft
-LIBFT_ARC		= $(LIBFT_PATH)/libft.a
+LIBFT_PATH		= libft/libft.a
+LIBFT_ARC		= $(LIBFT_PATH)
 
 CC				= cc
 CFLAGS			= -Wall -Wextra -Werror -g
@@ -47,11 +45,9 @@ $(NAME): $(BUILD_PATH) $(LIBFT_ARC) $(OBJS)	## Compile
 	@echo " $(MAG)🌸 Compiling $(MAG)$(NAME)$(D)"
 
 
-deps:		#Download/Update deps
-	@if test -d "$(LIBFT_PATH)"; then \
+deps:		#Check
+	@if test -f "$(LIBFT_PATH)"; then \
 		echo "    $(B)$(D)$(CYN)[Nothing to be done 𖡼.𖤣𖥧𖡼.𖤣𖥧$(D)]"; fi
-	@if test ! -d "$(LIBFT_PATH)"; then make get_libft; \
-		else echo "    $(CYN)[libft] folder found 𖡼.𖤣𖥧𖡼.𖤣𖥧"; fi
 
 $(BUILD_PATH)/%.o: $(SRC_PATH)/%.c $(HEADERS)
 	@mkdir -p $(dir $@)
@@ -62,30 +58,21 @@ $(BUILD_PATH):
 	@echo " $(B)$(MAG)🌸 Creating build folder..."
 
 $(LIBFT_ARC):
-	@$(MAKE) $(LIBFT_PATH) >/dev/null 2>&1
-
-get_libft:
-	@echo "   $(B)Getting Libft$(D)"
-	@$(MKDIR_P) $(LIBS_PATH)
-	@git clone -q $(LIBFT_URL) $(LIBFT_PATH);
-	@echo " $(B)$(MAG)🌸 Libft submodule download$(D)..."
+	@make -C libft
 
 clean:				#Remove object files
 	@echo "$(CYN)𖡼.𖤣𖥧𖡼.𖤣𖥧 $(B)Cleaning object files$(D)"
-	@$(RM) $(BUILD_PATH); 
+	@$(RM) $(BUILD_PATH);
+	@make -C libft clean
 	@echo "         -Removing $(BUILD_PATH) folder & files"; \
 
-fclean: clean			#Remove executable and .gdbinit
+fclean: clean		#Remove executable and .gdbinit
 	@echo "$(CYN)𖡼.𖤣𖥧𖡼.𖤣𖥧 $(B)Cleaning executables$(D)"
 	@$(RM) $(NAME);
+	@make -C libft fclean
 	@echo "         -Removing $(NAME) file"; \
 
-libclean: fclean	#Remove libs
-	@echo "$(CYN)𖡼.𖤣𖥧𖡼.𖤣𖥧 $(B)Cleaning libs$(D)"
-	@$(RM) $(LIBS_PATH)
-	@$(RM) push_swap_visualizer
-
-re: libclean all
+re: fclean all
 
 .PHONY: all deps clean fclean libclean re tester get_libft visualizer
 

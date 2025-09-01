@@ -18,12 +18,12 @@ void	reverse_rotate(t_stack **stack)
 	t_stack	*second_last;
 
 	second_last = *stack;
-	while (second_last->next->next) //encontro penultimo node
+	while (second_last->next->next)
 		second_last = second_last->next;
-	last = second_last->next; //ultimo node é o proximo
-	last->next = *stack; //ultimo aponta para o inicio da stack (segundo agora)
-	*stack = last; //stack atualizada é last
-	second_last->next = NULL; //penultimo aponta p nulo
+	last = second_last->next;
+	last->next = *stack;
+	*stack = last;
+	second_last->next = NULL;
 }
 
 void	rra(t_stack **a)

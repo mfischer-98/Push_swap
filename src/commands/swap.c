@@ -19,9 +19,9 @@ void	swap(t_stack **stack)
 
 	first = *stack;
 	second = first->next;
-	first->next = second->next; //first aponta para nulo ou prox node
-	second->next = first; //second aponta para o first
-	*stack = second; //a aponta para o second, que agora é o primeiro node
+	first->next = second->next;
+	second->next = first;
+	*stack = second;
 }
 
 void	sa(t_stack **a)

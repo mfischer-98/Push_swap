@@ -13,7 +13,7 @@
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-# include "../lib/libft/libft.h"
+# include "../libft/libft.h"
 # include <unistd.h>
 # include <stdlib.h>
 # include <limits.h>
@@ -30,7 +30,7 @@ int		parsing(int ac, char **av, t_stack **a);
 int		check_arg(char **av, t_stack **a);
 int		check_numbers(int n, char **av, t_stack **a);
 int		check_max(char **array, int size, t_stack **a);
-int 	check_duplicate(int *numbers, int size);
+int		check_duplicate(int *numbers, int size);
 void	free_array(char **array, int n);
 int		check_order(t_stack **a);
 

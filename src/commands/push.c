@@ -14,8 +14,8 @@
 
 void	push(t_stack **src, t_stack **dest)
 {
-	t_stack *temp;
-	t_stack *src_node;
+	t_stack	*temp;
+	t_stack	*src_node;
 
 	src_node = *src;
 	temp = *src;

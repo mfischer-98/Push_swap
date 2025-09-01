@@ -17,7 +17,7 @@ int	check_order(t_stack **a)
 	t_stack	*temp;
 
 	temp = *a;
-	while(temp->next)
+	while (temp->next)
 	{
 		if (temp->number < temp->next->number)
 			return (0);
@@ -52,5 +52,4 @@ void	print_list(t_stack **a)
 		printf("Node Number: %d  Index: %d\n", current->number, current->index);
 		current = current->next;
 	}
-	//printf("Node Number: %d  Index: %d\n\n\n", current->number, current->index);
 }
