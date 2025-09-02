@@ -19,7 +19,7 @@ int	check_order(t_stack **a)
 	temp = *a;
 	while (temp->next)
 	{
-		if (temp->number < temp->next->number)
+		if (temp->number > temp->next->number)
 			return (0);
 		temp = temp->next;
 	}
