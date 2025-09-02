@@ -112,7 +112,7 @@ int	check_arg(char **av, t_stack **a)
 
 int	parsing(int ac, char **av, t_stack **a)
 {
-	if (ac == 2)
+	if (ac == 2 && av[1][0])
 		return (check_arg(av, a));
 	if (ac > 2)
 		return (check_numbers(ac, av, a));

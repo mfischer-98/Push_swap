@@ -6,13 +6,13 @@
 /*   By: mefische <mefische@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 10:38:49 by mefische          #+#    #+#             */
-/*   Updated: 2025/09/01 15:50:17 by mefische         ###   ########.fr       */
+/*   Updated: 2025/09/02 12:32:20 by mefische         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_atol(const char *nptr)
+long	ft_atol(const char *nptr)
 {
 	long	res;
 	int		neg;

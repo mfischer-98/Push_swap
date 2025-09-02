@@ -6,7 +6,7 @@
 /*   By: mefische <mefische@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 16:27:18 by mefische          #+#    #+#             */
-/*   Updated: 2025/09/01 15:50:09 by mefische         ###   ########.fr       */
+/*   Updated: 2025/09/02 12:32:33 by mefische         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # include <stdarg.h>
 
 char	**ft_split(char const *s, char c);
-int		ft_atol(const char *nptr);
+long	ft_atol(const char *nptr);
 
 //printf
 int		ft_printf(const char *f, ...);
