@@ -51,7 +51,7 @@ deps:		#Check
 
 $(BUILD_PATH)/%.o: $(SRC_PATH)/%.c $(HEADERS)
 	@mkdir -p $(dir $@)
-	@$(CC) $(CFLAGS) $(INC) -c $< -o $@
+	@$(CC) $(CFLAGS) -c $< -o $@ $(INC)
 
 $(BUILD_PATH):
 	@$(MKDIR_P) $(BUILD_PATH)

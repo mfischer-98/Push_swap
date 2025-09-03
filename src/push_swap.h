@@ -27,7 +27,7 @@ typedef struct s_stack
 
 //Parsing
 int		parsing(int ac, char **av, t_stack **a);
-int		check_arg(char **av, t_stack **a);
+int		check_arg(char **av);
 int		check_numbers(int n, char **av, t_stack **a);
 int		check_max(char **array, int size, t_stack **a);
 int		check_duplicate(int *numbers, int size);
