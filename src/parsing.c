@@ -93,16 +93,15 @@ int	check_arg(char **av, t_stack **a)
 	{
 		while (av[1][i] == ' ')
 			i++;
-		if ((av[1][i] == '-') || (av[1][i] == '+') 
+		if ((av[1][i] == '-') || (av[1][i] == '+')
 			|| (av[1][i] >= '0' && av[1][i] <= '9'))
 		{
 			n++;
 			i++;
-			while ((av[1][i] >= '0' && av[1][i] <= '9') && (av[1][i] != ' '))
+			while (av[1][i] >= '0' && av[1][i] <= '9')
 				i++;
 		}
-		else if ((av[1][i] < '0' || av[1][i] > '9')
-			&& (av[1][i] != ' ') && av[1][i])
+		if ((av[1][i] < '0' || av[1][i] > '9') && (av[1][i] != ' ') && av[1][i])
 			return (ft_printf("Error\nInvalid characters.\n"), 0);
 	}
 	array = ft_split(av[1], ' ');
