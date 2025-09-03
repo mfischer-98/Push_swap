@@ -69,7 +69,7 @@ int	check_numbers(int n, char **av, t_stack **a)
 		j = 0;
 		while (av[i][j])
 		{
-			if ((av[i][j] == '-') && (av[i][j + 1] >= '0'
+			if (((av[i][j] == '-') || (av[i][j] == '+')) && (av[i][j + 1] >= '0'
 					&& av[i][j + 1] <= '9'))
 				j++;
 			if (av[i][j] < '0' || av[i][j] > '9')
@@ -93,7 +93,8 @@ int	check_arg(char **av, t_stack **a)
 	{
 		while (av[1][i] == ' ')
 			i++;
-		if ((av[1][i] == '-') || (av[1][i] >= '0' && av[1][i] <= '9'))
+		if ((av[1][i] == '-') || (av[1][i] == '+') 
+			|| (av[1][i] >= '0' && av[1][i] <= '9'))
 		{
 			n++;
 			i++;
