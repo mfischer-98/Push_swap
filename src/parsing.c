@@ -55,6 +55,7 @@ int	check_max(char **array, int size, t_stack **a)
 		return (ft_printf("Error\nRepeated numbers.\n"),
 			free(numbers), free_array(array, size), free_list(*a), 0);
 	free(numbers);
+	free_array(array, size);
 	return (size);
 }
 
@@ -92,14 +93,10 @@ int	check_arg(char **av)
 	{
 		while (av[1][i] == ' ')
 			i++;
-		if (((av[1][i] == '-') || (av[1][i] == '+')) && ft_isdigit(av[1][i + 1]))
-			i++;
 		if (ft_isdigit(av[1][i]))
 			n++;
-		while (ft_isdigit(av[1][i]))
-				i++;
-		if ((av[1][i] < '0' || av[1][i] > '9') && (av[1][i] != ' ') && av[1][i])
-			return (ft_printf("Error\nInvalid characters.\n"), 0);
+		while (av[1][i] != ' ' && av[1][i])
+			i++;
 	}
 	return (n);
 }
@@ -110,6 +107,7 @@ int	parsing(int ac, char **av, t_stack **a)
 	int		n;
 
 	n = 0;
+	array = NULL;
 	if (ac == 2 && av[1][0])
 	{
 		n = check_arg(av);
@@ -118,7 +116,7 @@ int	parsing(int ac, char **av, t_stack **a)
 	}
 	if (ac > 2)
 	{
-		array = av + 1;
+		array = copy_argv(ac, av, array);
 		return (check_numbers(ac - 1, array, a));
 	}
 	return (0);

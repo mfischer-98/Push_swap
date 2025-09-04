@@ -34,5 +34,7 @@ int		ft_unsig_putnbr(unsigned int n);
 int		ft_printhexa(unsigned long n, char *base);
 int		ft_pointer(void *ptr);
 int		ft_isdigit(int c);
+char	*ft_strdup(const char *s);
+size_t	ft_strlen(const char *s);
 
 #endif

@@ -26,6 +26,25 @@ int	check_order(t_stack **a)
 	return (free_list(*a), 1);
 }
 
+char **copy_argv(int ac, char **av, char **array)
+{
+	int	i;
+
+	i = 0;
+	array = malloc (ac * sizeof(char *));
+	if (!array)
+		return (NULL);
+	while (i < ac - 1)
+	{
+		array[i] = ft_strdup(av[i + 1]);
+		if (!array[i])
+			return (free_array(array, i), NULL);
+		i++;
+	}
+	array[i] = NULL;
+	return (array);
+}
+
 void	free_array(char **array, int n)
 {
 	int	i;
