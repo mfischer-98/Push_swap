@@ -31,7 +31,7 @@ char	**copy_argv(int ac, char **av, char **array);
 int		check_arg(char **av);
 int		check_numbers(int n, char **av, t_stack **a);
 int		check_max(char **array, int size, t_stack **a);
-int		check_duplicate(int *numbers, int size);
+int		check_duplicate(t_stack **a, int num);
 void	free_array(char **array, int n);
 int		check_order(t_stack **a);
 

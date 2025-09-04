@@ -12,22 +12,16 @@
 
 #include "push_swap.h"
 
-int	check_duplicate(int *numbers, int size)
+int	check_duplicate(t_stack **a, int num)
 {
-	int	i;
-	int	j;
+	t_stack	*current;
 
-	i = 0;
-	while (i < size)
+	current = *a;
+	while (current)
 	{
-		j = i + 1;
-		while (j < size)
-		{
-			if (numbers[i] == numbers[j])
-				return (1);
-			j++;
-		}
-		i++;
+		if (current->number == num)
+			return (1);
+		current = current->next;
 	}
 	return (0);
 }
@@ -35,26 +29,21 @@ int	check_duplicate(int *numbers, int size)
 int	check_max(char **array, int size, t_stack **a) 
 {
 	int		i;
-	int		*numbers;
 	long	num;
 
 	i = 0;
-	num = 0;
-	numbers = malloc(sizeof (int) * size);
 	while (i < size)
 	{
 		num = ft_atol(array[i]);
 		if (num > INT_MAX || num < INT_MIN)
 			return (ft_printf("Error\nInt overflow.\n"),
-				free(numbers), free_list(*a), 0);
+				free_array(array, size), free_list(*a), 0);
 		list_init(a, (int)num);
-		numbers[i] = (int)num;
+		if (check_duplicate(a, (int)num))
+			return (ft_printf("Error\nRepeated numbers.\n"),
+				free_array(array, size), free_list(*a), 0);
 		i++;
 	}
-	if (check_duplicate(numbers, size))
-		return (ft_printf("Error\nRepeated numbers.\n"),
-			free(numbers), free_array(array, size), free_list(*a), 0);
-	free(numbers);
 	free_array(array, size);
 	return (size);
 }
