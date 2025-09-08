@@ -86,3 +86,19 @@ int	get_min(t_stack **stack)
 	}
 	return (min);
 }
+
+int	min_position(t_stack **stack, int min)
+{
+	t_stack	*temp;
+	int		counter;
+
+	counter = 0;
+	temp = *stack;
+	while (temp)
+	{
+		if (temp->number != min)
+			counter++;
+		temp = temp->next;
+	}
+	return (counter);
+}

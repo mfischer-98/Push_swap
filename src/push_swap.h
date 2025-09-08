@@ -31,7 +31,7 @@ char	**copy_argv(int ac, char **av, char **array);
 int		check_arg(char **av);
 int		check_numbers(int n, char **av, t_stack **a);
 int		check_max(char **array, int size, t_stack **a);
-int		check_duplicate(t_stack **a, int num);
+int		check_duplicate(t_stack **a);
 void	free_array(char **array, int n);
 int		check_order(t_stack **a);
 
@@ -41,6 +41,7 @@ void	print_list(t_stack **a);
 void	free_list(t_stack *a);
 void	index_list(t_stack **a);
 int		get_min(t_stack **stack);
+int		min_position(t_stack **stack, int min);
 
 //Sorting
 void	few_args(t_stack **a, t_stack **b, int size);

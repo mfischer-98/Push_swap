@@ -51,10 +51,21 @@ void	sort_four(t_stack **a, t_stack **b)
 void	sort_five(t_stack **a, t_stack **b)
 {
 	int	min;
+	int	position;
 
 	min = get_min(a);
-	while ((*a)->number != min)
-		rra(a);
+	position = min_position(a, min);
+	if (position != 0)
+	{
+		if (position > 2)
+		{
+			while ((*a)->number != min)
+				rra(a);
+		}
+		else
+			while ((*a)->number != min)
+				ra(a);
+	}
 	pb(a, b);
 	sort_four(a, b);
 	pa(a, b);

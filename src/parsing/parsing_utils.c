@@ -26,7 +26,7 @@ int	check_order(t_stack **a)
 	return (free_list(*a), 1);
 }
 
-char **copy_argv(int ac, char **av, char **array)
+char	**copy_argv(int ac, char **av, char **array)
 {
 	int	i;
 
@@ -52,7 +52,7 @@ void	free_array(char **array, int n)
 	i = 0;
 	if (array)
 	{
-		while (i < n)
+		while (i <= n)
 		{
 			free(array[i]);
 			i++;

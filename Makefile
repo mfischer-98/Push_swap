@@ -21,7 +21,8 @@ SRC_PATH		= src
 INC_PATH		= src
 BUILD_PATH		= .build
 
-FILES			= main.c parsing.c parsing_utils.c list_utils.c sort_small.c radix_sort.c commands/push.c commands/rotate.c commands/rev_rotate.c commands/swap.c
+FILES			= main.c parsing/parsing.c parsing/parsing_utils.c sorting/list_utils.c sorting/sort_small.c sorting/radix_sort.c \
+					commands/push.c commands/rotate.c commands/rev_rotate.c commands/swap.c
 
 LIBFT_PATH		= libft/libft.a
 LIBFT_ARC		= $(LIBFT_PATH)

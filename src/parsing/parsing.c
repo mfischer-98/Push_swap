@@ -12,21 +12,27 @@
 
 #include "push_swap.h"
 
-int	check_duplicate(t_stack **a, int num)
+int	check_duplicate(t_stack **a)
 {
-	t_stack	*current;
+	t_stack	*i;
+	t_stack	*j;
 
-	current = *a;
-	while (current)
+	i = *a;
+	while (i)
 	{
-		if (current->number == num)
-			return (1);
-		current = current->next;
+		j = (*i).next;
+		while (j)
+		{
+			if (i->number == j->number)
+				return (1);
+			j = j->next;
+		}
+		i = i->next;
 	}
 	return (0);
 }
 
-int	check_max(char **array, int size, t_stack **a) 
+int	check_max(char **array, int size, t_stack **a)
 {
 	int		i;
 	long	num;
@@ -39,11 +45,11 @@ int	check_max(char **array, int size, t_stack **a)
 			return (ft_printf("Error\nInt overflow.\n"),
 				free_array(array, size), free_list(*a), 0);
 		list_init(a, (int)num);
-		if (check_duplicate(a, (int)num))
-			return (ft_printf("Error\nRepeated numbers.\n"),
-				free_array(array, size), free_list(*a), 0);
 		i++;
 	}
+	if (check_duplicate(a))
+		return (ft_printf("Error\nRepeated numbers.\n"),
+			free_array(array, size), free_list(*a), 0);
 	free_array(array, size);
 	return (size);
 }
@@ -63,7 +69,10 @@ int	check_numbers(int n, char **av, t_stack **a)
 				&& ft_isdigit(av[i][j + 1]))
 				j++;
 			if (av[i][j] < '0' || av[i][j] > '9')
+			{
+				free_array(av, n);
 				return (ft_printf("Error\nInvalid characters.\n"), 0);
+			}
 			j++;
 		}
 		i++;
