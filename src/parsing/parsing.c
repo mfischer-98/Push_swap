@@ -34,12 +34,15 @@ int	check_duplicate(t_stack **a)
 
 int	check_max(char **array, int size, t_stack **a)
 {
-	int		i;
 	long	num;
+	int		i;
 
 	i = 0;
 	while (i < size)
 	{
+		if (num_counting(array[i]))
+			return (ft_printf("Error\nInt overflow.\n"),
+				free_array(array, size), free_list(*a), 0);
 		num = ft_atol(array[i]);
 		if (num > INT_MAX || num < INT_MIN)
 			return (ft_printf("Error\nInt overflow.\n"),
@@ -93,6 +96,8 @@ int	check_arg(char **av)
 			i++;
 		if (ft_isdigit(av[1][i]))
 			n++;
+		if (!ft_isdigit(av[1][i]) && av[1][i] != ' ')
+			return (ft_printf("Error\nInvalid characters.\n"), 0);
 		while (av[1][i] != ' ' && av[1][i])
 			i++;
 	}
@@ -109,7 +114,8 @@ int	parsing(int ac, char **av, t_stack **a)
 	if (ac == 2 && av[1][0])
 	{
 		n = check_arg(av);
-		array = ft_split(av[1], ' ');
+		if (n > 0)
+			array = ft_split(av[1], ' ');
 		return (check_numbers(n, array, a));
 	}
 	if (ac > 2)

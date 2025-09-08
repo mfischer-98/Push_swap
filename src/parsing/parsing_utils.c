@@ -61,6 +61,21 @@ void	free_array(char **array, int n)
 	}
 }
 
+int	num_counting(char *array)
+{
+	int	counter;
+
+	counter = 0;
+	while (*array)
+	{
+		counter++;
+		array++;
+	}
+	if (counter > 11)
+		return (1);
+	return (0);
+}
+
 void	print_list(t_stack **a)
 {
 	t_stack	*current;
@@ -68,7 +83,8 @@ void	print_list(t_stack **a)
 	current = *a;
 	while (current)
 	{
-		printf("Node Number: %d  Index: %d\n", current->number, current->index);
+		ft_printf("Node Number: %d  Index: %d\n",
+			current->number, current->index);
 		current = current->next;
 	}
 }

@@ -34,6 +34,7 @@ int		check_max(char **array, int size, t_stack **a);
 int		check_duplicate(t_stack **a);
 void	free_array(char **array, int n);
 int		check_order(t_stack **a);
+int		num_counting(char *array);
 
 //List handling
 void	list_init(t_stack **a, int num);
