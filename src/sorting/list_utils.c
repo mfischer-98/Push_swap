@@ -94,10 +94,9 @@ int	min_position(t_stack **stack, int min)
 
 	counter = 0;
 	temp = *stack;
-	while (temp)
+	while (temp->number != min)
 	{
-		if (temp->number != min)
-			counter++;
+		counter++;
 		temp = temp->next;
 	}
 	return (counter);
